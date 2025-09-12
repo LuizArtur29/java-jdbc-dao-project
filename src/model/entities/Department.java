@@ -12,6 +12,8 @@ public class Department implements Serializable {
     public Department() {
     }
 
+    public Department(Integer id, String name) {}
+
     public Integer getId() {
         return id;
     }
