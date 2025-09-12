@@ -3,6 +3,7 @@ import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -12,13 +13,28 @@ public class application {
 
         SellerDao sellerDao = DaoFactory.createSellerDao();
 
+        System.out.println("==== TEST 1: seller findById ====");
+        Seller seller = sellerDao.findById(3);
+        System.out.println(seller);
+
+        System.out.println("==== TEST 2: seller findByDepartment ====");
         Department department = new Department();
         department.setId(2);
         List<Seller> list = sellerDao.findByDepartment(department);
-        for (Seller seller : list) {
-            System.out.println(seller);
+        for (Seller obj : list) {
+            System.out.println(obj);
         }
 
-        System.out.println(department);
+        System.out.println("==== TEST 3: seller findAll ====");
+        list = sellerDao.findAll();
+        for (Seller obj : list) {
+            System.out.println(obj);
+        }
+
+        System.out.println("==== TEST 4: seller insert ====");
+        Seller newSeller = new Seller(null, "Gred", "greg@gmail.com", new Date(), 4000.0, department);
+        sellerDao.insert(newSeller);
+        System.out.println("Inserted! New Id: " + newSeller.getId());
+
     }
 }
